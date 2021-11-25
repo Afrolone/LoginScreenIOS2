@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Sxa-H2-Sno">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Sxa-H2-Sno">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Buw-OV-zL6">
@@ -47,7 +47,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="Bca-ot-nf0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCm-nF-Ro5">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -66,7 +66,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="W4j-RA-gVP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dR9-Bf-BE1">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -85,7 +85,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="6GY-Dp-nMd"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                             </textField>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfT-9s-bZu">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -104,7 +104,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="JAJ-GG-elN"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                             </textField>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNI-i9-60k">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -117,13 +117,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="71i-x5-WWh">
                                         <rect key="frame" x="16" y="593" width="382" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ErH-s8-bZM" userLabel="Password">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ErH-s8-bZM" userLabel="Password">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="xNC-p8-0Po"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <nil key="textColor"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJc-ef-wFM">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -142,7 +142,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="RY8-v7-tgM"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Required*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxg-nm-64f">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -196,19 +196,19 @@
                     </view>
                     <connections>
                         <outlet property="button" destination="8Ll-nm-aa0" id="eYV-Cg-i3h"/>
-                        <outlet property="confirmEmailRequired" destination="qNI-i9-60k" id="g4n-j2-H2a"/>
-                        <outlet property="confirmEmailTextField" destination="OYZ-n4-1UQ" id="rsl-h2-0Ve"/>
-                        <outlet property="confirmPasswordRequired" destination="Lxg-nm-64f" id="CeD-Md-1xh"/>
-                        <outlet property="confirmPasswordTextField" destination="H3B-64-GJy" id="z91-BW-w1l"/>
-                        <outlet property="emailRequired" destination="TfT-9s-bZu" id="40w-ZZ-ES3"/>
-                        <outlet property="emailTextField" destination="yPo-vh-l53" id="l7Q-I4-zqk"/>
-                        <outlet property="firstNameRequired" destination="kCm-nF-Ro5" id="qTt-I3-V1f"/>
-                        <outlet property="firstNameTextField" destination="GBg-aL-Ets" id="Flp-RF-fCg"/>
                         <outlet property="imageView" destination="zQX-jL-Phw" id="PbF-a5-Ov1"/>
-                        <outlet property="lastNameRequired" destination="dR9-Bf-BE1" id="D7R-Ge-iDw"/>
-                        <outlet property="lastNameTextField" destination="1jQ-pV-Ahi" id="dRd-yk-8mC"/>
-                        <outlet property="passwordRequired" destination="WJc-ef-wFM" id="ikM-F1-XgW"/>
-                        <outlet property="passwordTextField" destination="ErH-s8-bZM" id="a37-UD-431"/>
+                        <outletCollection property="formTextfields" destination="GBg-aL-Ets" collectionClass="NSMutableArray" id="Dgc-2P-AFz"/>
+                        <outletCollection property="formTextfields" destination="1jQ-pV-Ahi" collectionClass="NSMutableArray" id="2sS-zw-Cft"/>
+                        <outletCollection property="formTextfields" destination="yPo-vh-l53" collectionClass="NSMutableArray" id="0Aw-Hr-uKY"/>
+                        <outletCollection property="formTextfields" destination="OYZ-n4-1UQ" collectionClass="NSMutableArray" id="NEU-hz-48C"/>
+                        <outletCollection property="formTextfields" destination="ErH-s8-bZM" collectionClass="NSMutableArray" id="mJ5-AU-mHQ"/>
+                        <outletCollection property="formTextfields" destination="H3B-64-GJy" collectionClass="NSMutableArray" id="HL1-uy-8BC"/>
+                        <outletCollection property="requiredLabels" destination="kCm-nF-Ro5" collectionClass="NSMutableArray" id="NJh-e1-piR"/>
+                        <outletCollection property="requiredLabels" destination="dR9-Bf-BE1" collectionClass="NSMutableArray" id="nrp-Ad-zjG"/>
+                        <outletCollection property="requiredLabels" destination="TfT-9s-bZu" collectionClass="NSMutableArray" id="sDU-iC-dM8"/>
+                        <outletCollection property="requiredLabels" destination="qNI-i9-60k" collectionClass="NSMutableArray" id="ble-iU-ow9"/>
+                        <outletCollection property="requiredLabels" destination="WJc-ef-wFM" collectionClass="NSMutableArray" id="soG-JI-ffG"/>
+                        <outletCollection property="requiredLabels" destination="Lxg-nm-64f" collectionClass="NSMutableArray" id="8pg-7p-da7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

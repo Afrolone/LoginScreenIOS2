@@ -13,37 +13,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     
     
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var confirmEmailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet var formTextfields: [UITextField]!
     
-    
-    @IBOutlet weak var firstNameRequired: UILabel!
-    @IBOutlet weak var lastNameRequired: UILabel!
-    @IBOutlet weak var emailRequired: UILabel!
-    @IBOutlet weak var confirmEmailRequired: UILabel!
-    @IBOutlet weak var passwordRequired: UILabel!
-    @IBOutlet weak var confirmPasswordRequired: UILabel!
+    @IBOutlet var requiredLabels: [UILabel]!
     
     
     @IBAction func registerClicked(_ sender: Any) {
-        checkIfFirstNameEmpty()
-        checkIfLastNameEmpty()
+        checkForEmptyTextFields()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setImageView()
         setButton()
-        firstNameTextField.layer.cornerRadius = 10
-        lastNameTextField.layer.cornerRadius = 10
-        emailTextField.layer.cornerRadius = 10
-        confirmEmailTextField.layer.cornerRadius = 10
-        passwordTextField.layer.cornerRadius = 10
-        confirmPasswordTextField.layer.cornerRadius = 10
+        setTextViews()
+        configureTapGesture()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
     }
 
     fileprivate func setImageView() {
@@ -60,29 +48,94 @@ class ViewController: UIViewController {
         button.clipsToBounds = true
     }
     
-    fileprivate func checkIfFirstNameEmpty() {
-        if (firstNameTextField.text!.isEmpty) {
-            firstNameRequired.isHidden = false
-        } else {
-            firstNameRequired.isHidden = true
+    private func setTextViews() {
+        print("TAGS")
+        for textField in formTextfields {
+            textField.tag = formTextfields.firstIndex(of: textField)!
+            print(textField.tag)
+            textField.delegate = self
+            textField.layer.cornerRadius = 10
+            textField.layer.borderWidth = 1.0
+            textField.layer.borderColor = UIColor.black.cgColor
+        }
+        formTextfields[4].isSecureTextEntry = true
+        formTextfields[5].isSecureTextEntry = true
+    }
+    
+    fileprivate func checkForEmptyTextFields() {
+        for (tvf, labf) in zip(formTextfields, requiredLabels) {
+            if tvf.text!.isEmpty {
+                labf.isHidden = false
+            } else {
+                labf.isHidden = true
+            }
         }
     }
     
-    fileprivate func checkIfLastNameEmpty() {
-        if (lastNameTextField.text!.isEmpty) {
-            lastNameRequired.isHidden = false
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap() {
+        view.endEditing(true)
+    }
+    
+    private func tagBasedTextField(_ textField: UITextField) {
+        if textField.tag != 5 {
+            let nextTextField: UITextField? = formTextfields[textField.tag + 1]
+            nextTextField!.becomeFirstResponder()
         } else {
-            lastNameRequired.isHidden = true
+            textField.resignFirstResponder()
         }
     }
     
-    fileprivate func checkIfEmailEmpty() {
-        if (emailTextField.text!.isEmpty) {
-            emailRequired.isHidden = false
-        } else {
-            emailRequired.isHidden = true
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= 0.8*(keyboardSize.height)
+            }
         }
     }
 
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    func sendAlert(message: String) {
+        let alert = UIAlertController(title: "Invalid Credentials", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: {action
+            in
+        })
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+    
+    func isValidEmail() {
+        //email = formTextfields[3].text
+        //confirmEmail = formTextfields[4].text
+        
+        //confirmEmail.
+    }
+    
+}
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.tagBasedTextField(textField)
+        return true
+    }
+    
+    
 }
 
