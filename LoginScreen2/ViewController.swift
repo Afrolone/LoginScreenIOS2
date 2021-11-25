@@ -12,16 +12,34 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var button: UIButton!
     
-    
     @IBOutlet var formTextfields: [UITextField]!
-    
     @IBOutlet var requiredLabels: [UILabel]!
     
+    var allFieldsHaveInput = false
     
     @IBAction func registerClicked(_ sender: Any) {
         checkForEmptyTextFields()
+        print("allfields")
+        if !allFieldsHaveInput {
+            sendAlert(title: "Bad Input!",message: "All fields must have input")
+            return
+        }
         
+        if !areTextFieldTextsSame(firstTVIndex: 2, secondTVIndex: 3) {
+            sendAlert(message: "Emails are not the same!")
+            return
+        }
+        
+        if !areTextFieldTextsSame(firstTVIndex: 4, secondTVIndex: 5) {
+            sendAlert(message: "Passwords are not the same!")
+            return
+        }
+        
+        sendAlert(title: "Success",message: "")
+            
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +47,7 @@ class ViewController: UIViewController {
         setButton()
         setTextViews()
         configureTapGesture()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        configureKeyboard()
 
     }
 
@@ -56,7 +73,7 @@ class ViewController: UIViewController {
             textField.delegate = self
             textField.layer.cornerRadius = 10
             textField.layer.borderWidth = 1.0
-            textField.layer.borderColor = UIColor.black.cgColor
+            textField.layer.borderColor = UIColor.gray.cgColor
         }
         formTextfields[4].isSecureTextEntry = true
         formTextfields[5].isSecureTextEntry = true
@@ -64,7 +81,9 @@ class ViewController: UIViewController {
     
     fileprivate func checkForEmptyTextFields() {
         for (tvf, labf) in zip(formTextfields, requiredLabels) {
+            allFieldsHaveInput = true
             if tvf.text!.isEmpty {
+                allFieldsHaveInput = false
                 labf.isHidden = false
             } else {
                 labf.isHidden = true
@@ -104,13 +123,18 @@ class ViewController: UIViewController {
         }
     }
     
-    func sendAlert(message: String) {
-        let alert = UIAlertController(title: "Invalid Credentials", message: message, preferredStyle: .alert)
+    func sendAlert(title: String = "Invalid Credentials", message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: {action
             in
         })
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    fileprivate func configureKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func isValidEmail(_ email: String) -> Bool {
@@ -120,11 +144,11 @@ class ViewController: UIViewController {
         return emailPred.evaluate(with: email)
     }
     
-    func isValidEmail() {
-        //email = formTextfields[3].text
-        //confirmEmail = formTextfields[4].text
+    func areTextFieldTextsSame(firstTVIndex: Int, secondTVIndex: Int) -> Bool {
+        let text1 = formTextfields[firstTVIndex].text ?? ""
+        let text2 = formTextfields[secondTVIndex].text ?? ""
         
-        //confirmEmail.
+        return text1 == text2
     }
     
 }
