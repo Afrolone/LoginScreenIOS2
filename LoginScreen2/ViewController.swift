@@ -112,7 +112,7 @@ class ViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= 0.8*(keyboardSize.height)
+                self.view.frame.origin.y -= 1.0*(keyboardSize.height)
             }
         }
     }
