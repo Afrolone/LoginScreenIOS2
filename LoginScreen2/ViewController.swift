@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     
     @IBAction func registerClicked(_ sender: Any) {
         checkForEmptyTextFields()
-        print("allfields")
         if !allFieldsHaveInput {
             sendAlert(title: "Bad Input!",message: "All fields must have input")
             return
@@ -72,6 +71,8 @@ class ViewController: UIViewController {
             print(textField.tag)
             textField.delegate = self
             textField.layer.cornerRadius = 10
+            textField.setLeftPaddingPoints(5)
+            textField.setRightPaddingPoints(5)
             textField.layer.borderWidth = 1.0
             textField.layer.borderColor = UIColor.gray.cgColor
         }
@@ -161,5 +162,18 @@ extension ViewController: UITextFieldDelegate {
     }
     
     
+}
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
 }
 
