@@ -19,6 +19,21 @@ class ViewController: UIViewController {
     
     @IBAction func registerClicked(_ sender: Any) {
         checkForEmptyTextFields()
+        handleMessages()
+            
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setImageView()
+        setButton()
+        setTextViews()
+        configureTapGesture()
+        configureKeyboard()
+
+    }
+    
+    private func handleMessages() {
         if !allFieldsHaveInput {
             sendAlert(title: "Bad Input!",message: "All fields must have input")
             return
@@ -34,23 +49,17 @@ class ViewController: UIViewController {
             return
         }
         
+        if let email = formTextfields[2].text {
+            if !isValidEmail(email) {
+                sendAlert(message: "Email is not valid")
+                return
+            }
+        }
+        
         sendAlert(title: "Success",message: "")
-            
-    }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setImageView()
-        setButton()
-        setTextViews()
-        configureTapGesture()
-        configureKeyboard()
-
     }
 
-    fileprivate func setImageView() {
+    private func setImageView() {
         imageView.image = UIImage(named: "niss")!
         imageView.layer.masksToBounds = false
         imageView.layer.cornerRadius = (imageView?.frame.width)!/2
@@ -59,16 +68,14 @@ class ViewController: UIViewController {
         imageView.clipsToBounds = true
     }
     
-    fileprivate func setButton() {
+    private func setButton() {
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
     }
     
     private func setTextViews() {
-        print("TAGS")
         for textField in formTextfields {
             textField.tag = formTextfields.firstIndex(of: textField)!
-            print(textField.tag)
             textField.delegate = self
             textField.layer.cornerRadius = 10
             textField.setLeftPaddingPoints(5)
@@ -133,15 +140,15 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    fileprivate func configureKeyboard() {
+    private func configureKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        
         return emailPred.evaluate(with: email)
     }
     
@@ -160,7 +167,6 @@ extension ViewController: UITextFieldDelegate {
         self.tagBasedTextField(textField)
         return true
     }
-    
     
 }
 
